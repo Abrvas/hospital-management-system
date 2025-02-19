@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts TEST TEST
 
 In the project directory, you can run:
-Almas sosi
+Алмас соси яйца
 ### `npm start`
 
 Runs the app in the development mode.\
