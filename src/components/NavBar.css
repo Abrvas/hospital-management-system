@@ -1,0 +1,27 @@
+/* src/components/NavBar.css */
+
+.navbar {
+    display: flex;            /* Располагаем ссылки в линию */
+    align-items: center;      /* Выравниваем по вертикали */
+    background-color: #333;   /* Тёмно-серый фон */
+    padding: 0.5rem 1rem;     /* Внутренние отступы сверху/снизу 0.5rem, слева/справа 1rem */
+    gap: 1rem;                /* Промежуток между ссылками */
+  }
+  
+  .navbar a {
+    color: #fff;              /* Белый цвет текста */
+    text-decoration: none;    /* Убираем подчеркивание */
+    display: flex;            /* Чтобы иконка и текст шли в одну строку */
+    align-items: center;      /* Выравниваем иконку и текст по вертикали */
+    font-size: 1rem;          /* Размер шрифта */
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline; /* Подчеркиваем при наведении */
+  }
+  
+  .icon {
+    margin-right: 0.5rem;     /* Отступ между иконкой и текстом */
+    font-size: 1.2rem;        /* Увеличиваем размер иконки */
+  }
+  
