@@ -1,4 +1,3 @@
-// src/context/AuthContext.js
 import React, { createContext, useState } from 'react';
 
 export const AuthContext = createContext();
@@ -6,7 +5,7 @@ export const AuthContext = createContext();
 function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
-  // Эмуляция логина с несколькими ролями
+  // Функция логина — эмуляция проверки с несколькими ролями
   const login = (username, password) => {
     if (username === 'admin' && password === '123') {
       setUser({ username, role: 'admin' });

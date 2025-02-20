@@ -1,11 +1,12 @@
-// src/pages/LoginPage.js
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, TextField, Typography, Container } from '@mui/material';
+import { AuthContext } from '../context/AuthContext';
 
 function LoginPage() {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
@@ -13,10 +14,12 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Здесь можно добавить реальную логику авторизации
-    // Например, вызов API и проверку пользователя
-    // Для примера эмулируем успешный вход:
-    navigate('/dashboard');
+    const success = login(credentials.username, credentials.password);
+    if (success) {
+      navigate('/dashboard');
+    } else {
+      alert('Неверный логин или пароль!');
+    }
   };
 
   return (
