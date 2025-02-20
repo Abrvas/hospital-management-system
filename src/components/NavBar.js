@@ -1,14 +1,13 @@
 // src/components/NavBar.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-// Импортируем иконки из react-icons (пример)
+// Импортируем иконки из react-icons
 import { FaUserMd, FaCashRegister, FaUserTie, FaUserShield, FaHome } from 'react-icons/fa';
-import './NavBar.css'; // Подключим стили
+import './NavBar.css'; // Подключение стилей
 
 function NavBar() {
   return (
     <nav className="navbar">
-      {/* Пример ссылок: меняй на свой вкус */}
       <Link to="/">
         <FaHome className="icon" />
         Login

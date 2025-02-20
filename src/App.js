@@ -1,28 +1,38 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import AuthProvider from './context/AuthContext';
-import NavBar from './components/NavBar'; // Импортируем NavBar
 
-// Импортируем страницы
-import LoginPage from './pages/LoginPage';
-import DashboardPage from './pages/DashboardPage';
+// Контекст авторизации
+import AuthProvider from './context/AuthContext';
+
+// Навигационная панель
+import NavBar from './components/NavBar';
+
+// Страницы
+import LandingPage from './pages/LandingPage';      // Лендинг страница
+import LoginPage from './pages/LoginPage';          // Страница логина
+import DashboardPage from './pages/DashboardPage';  // Общий дашборд
 import DoctorDashboard from './pages/DoctorDashboard';
 import CashierDashboard from './pages/CashierDashboard';
 import DirectorDashboard from './pages/DirectorDashboard';
 
-// Импортируем защищенный маршрут
+// Защищённый маршрут
 import ProtectedRoute from './routes/ProtectedRoute';
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        {/* Добавляем навигационную панель */}
+        {/* Навигация отображается на всех страницах */}
         <NavBar />
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          {/* Лендинг страница */}
+          <Route path="/" element={<LandingPage />} />
 
+          {/* Страница логина */}
+          <Route path="/login" element={<LoginPage />} />
+
+          {/* Общий дашборд (для всех авторизованных пользователей) */}
           <Route
             path="/dashboard"
             element={
@@ -32,6 +42,7 @@ function App() {
             }
           />
 
+          {/* Дашборд для врача (доступен для ролей doctor и admin) */}
           <Route
             path="/doctor"
             element={
@@ -41,6 +52,7 @@ function App() {
             }
           />
 
+          {/* Дашборд для кассира (доступен для ролей cashier и admin) */}
           <Route
             path="/cashier"
             element={
@@ -50,6 +62,7 @@ function App() {
             }
           />
 
+          {/* Дашборд для директора (доступен для ролей director и admin) */}
           <Route
             path="/director"
             element={
@@ -59,6 +72,7 @@ function App() {
             }
           />
 
+          {/* Если маршрут не найден */}
           <Route path="*" element={<h2>Страница не найдена</h2>} />
         </Routes>
       </Router>

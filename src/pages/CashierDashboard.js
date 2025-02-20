@@ -1,3 +1,4 @@
+// src/pages/CashierDashboard.js
 import React from 'react';
 
 function CashierDashboard() {

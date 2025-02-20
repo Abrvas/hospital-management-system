@@ -1,3 +1,4 @@
+// src/pages/DoctorDashboard.js
 import React from 'react';
 
 function DoctorDashboard() {

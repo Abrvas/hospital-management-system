@@ -1,51 +1,56 @@
-import React, { useState, useContext } from 'react';
+// src/pages/LoginPage.js
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { Box, Button, TextField, Typography, Container } from '@mui/material';
 
 function LoginPage() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const { login } = useContext(AuthContext);
+  const [credentials, setCredentials] = useState({ username: '', password: '' });
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Вызываем login из AuthContext
-    const success = login(username, password);
-
-    if (success) {
-      // Если логин успешен — переходим на /dashboard
-      navigate('/dashboard');
-    } else {
-      alert('Неверный логин или пароль!');
-    }
+    // Здесь можно добавить реальную логику авторизации
+    // Например, вызов API и проверку пользователя
+    // Для примера эмулируем успешный вход:
+    navigate('/dashboard');
   };
 
   return (
-    <div>
-      <h1>Страница логина</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Имя пользователя: </label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="admin"
+    <Container maxWidth="sm">
+      <Box sx={{ mt: 8, textAlign: 'center' }}>
+        <Typography variant="h4" gutterBottom>
+          Вход в систему
+        </Typography>
+        <Box
+          component="form"
+          onSubmit={handleSubmit}
+          sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+        >
+          <TextField
+            label="Имя пользователя"
+            name="username"
+            value={credentials.username}
+            onChange={handleChange}
+            required
           />
-        </div>
-        <div>
-          <label>Пароль: </label>
-          <input
+          <TextField
+            label="Пароль"
+            name="password"
             type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="123"
+            value={credentials.password}
+            onChange={handleChange}
+            required
           />
-        </div>
-        <button type="submit">Войти</button>
-      </form>
-    </div>
+          <Button type="submit" variant="contained">
+            Войти
+          </Button>
+        </Box>
+      </Box>
+    </Container>
   );
 }
 

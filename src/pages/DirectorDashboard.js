@@ -1,3 +1,4 @@
+// src/pages/DirectorDashboard.js
 import React from 'react';
 
 function DirectorDashboard() {

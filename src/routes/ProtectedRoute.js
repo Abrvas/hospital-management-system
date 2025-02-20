@@ -1,3 +1,4 @@
+// src/routes/ProtectedRoute.js
 import React, { useContext } from 'react';
 import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -5,15 +6,14 @@ import { AuthContext } from '../context/AuthContext';
 function ProtectedRoute({ children, allowedRoles }) {
   const { user } = useContext(AuthContext);
 
-  // Если нет пользователя — перекидываем на логин
+  // Если пользователь не авторизован, перенаправляем на лендинг (или страницу логина)
   if (!user) {
     return <Navigate to="/" replace />;
   }
 
-  // Если указаны allowedRoles и роль пользователя не входит в список, отказываем в доступе
+  // Если указаны allowedRoles и роль пользователя не входит в список, показываем сообщение об отсутствии доступа
   if (allowedRoles && !allowedRoles.includes(user.role)) {
     return <h2>У вас нет доступа к этой странице</h2>;
-    // Либо можно сделать <Navigate to="/dashboard" />
   }
 
   // Иначе рендерим дочерний компонент
